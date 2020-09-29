@@ -5,10 +5,6 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}"
 	</head>
 		<body>
-			<h1> Memoria: {{ mem }} </h1>
-			<h1> Sistema: {{ os }} </h1>
-			{% for item in processList %}
-				{{ item }}
-			{% endfor %}
+			{{ ram_percent }}
 		</body>
 </html>
