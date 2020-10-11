@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PROCESS LIST</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
+</head>
+<body>
+<div class="process">
+{% for item in processList %}
+{{ item }} <br>
+{% endfor %}
+</div>
+</body>
+</html>
