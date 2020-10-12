@@ -5,7 +5,7 @@ from jinja2 import TemplateNotFound
 
 INTERNAL_ERROR = "500: Internal server error"
 
-app.config.from_envvar('LEA_SETTINGS')
+app.config.from_json('settings.json')
 
 @app.route('/')
 def index():
