@@ -1,9 +1,11 @@
 from LEA import app, resources, users
-from flask import render_template
+from simplepam import authenticate
+from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
 
 INTERNAL_ERROR = "500: Internal server error"
 
+app.config.from_envvar('LEA_SETTINGS')
 
 @app.route('/')
 def index():
@@ -11,6 +13,29 @@ def index():
         return render_template('index.html', title='INICIO', os=resources.get_os())
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if authenticate(username,password):
+            session['username'] = request.form['username']
+            return redirect(url_for('index'))
+        else:
+            return 'Invalid username/password'
+    return '''
+           <form action="" method="post">
+               <p><input type=text name=username>
+               <p><input type=password name=password>
+               <p><input type=submit value=Login>
+           </form>
+       '''
+
+@app.route('/logout')
+def logout():
+    session.pop('username',None)
+    return redirect(url_for('index'))
 
 
 @app.route('/ram')
@@ -39,8 +64,7 @@ def user_info(user):
 
 @app.route("/users/create_user/<user>")
 def create_user(user):
-    users.create_user(user)
-
+    pass
 
 @app.route("/users/delete_user/<user>")
 def delete_user(user):
