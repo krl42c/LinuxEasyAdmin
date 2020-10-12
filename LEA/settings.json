@@ -1,4 +1,4 @@
 {
-	"DEBUG": true,
+	"FLASK_DEBUG": true,
 	"SECRET_KEY": "devkey"
 }
