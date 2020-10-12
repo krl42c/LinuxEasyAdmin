@@ -24,8 +24,9 @@
 	border: red 2px solid;
 }
 
-body{
-	background-image: url("images/fondo.png");
+html{
+	background-image: url("images/fondo.png") no-repeat center center fixed;
+	background-size: cover;
 }
 .flex{
 	display: flex;
