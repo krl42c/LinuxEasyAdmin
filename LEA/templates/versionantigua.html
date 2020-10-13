@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head class="bordes">
+	<title>LinuxEasyAdmin</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+</head>
+<body>
+	<header>
+		<h1>LINUX EASY ADMIN</h1>
+	</header>
+
+	<!--Menu desplegable-->
+	<input type="checkbox" class="checkbox" id="check">
+    <label class="menu" for="check">|||</label>
+    <div class="left-panel">
+    <ul>
+    	<a href="{{url_for('list_users')}}"><li>Usuario</li></a>
+    	<a href=""><li>opcion2</li></a>
+    	<a href=""><li>opcion3</li></a>
+    </ul>
+    </div>
+
+    <!--graficos-->
+	<section class="flex">
+		<div class="graficaH">
+			<canvas id="myChart2"></canvas>
+		</div>
+		<div class="cir1">
+			<canvas id="myChart"></canvas>
+		</div>
+	</section>
+
+
+</body>
+<script>
+		var ctx= document.getElementById("myChart").getContext("2d");
+		var myChart= new Chart(ctx,{
+			type:"doughnut",
+			data:{
+				labels:['col1','col2','col3'],
+				datasets:[{
+					label:'Num datos',
+					data:[10,9,15],
+					backgroundColor:[
+						'rgb(255, 36, 99)',
+						'rgb(66,1,244)',
+						'rgb(255, 228, 0)',
+					]
+				}]
+			},
+			options:{}
+		});
+	</script>
+	<script>
+		var ctx= document.getElementById("myChart2").getContext("2d");
+		var myChart= new Chart(ctx,{
+			type:"horizontalBar",
+			data:{
+				labels:['col1','col2','col3'],
+				datasets:[{
+					label:'Num datos',
+					data:[10,9,15],
+					backgroundColor:[
+						'rgb(12,134,244)',
+						'rgb(66,1,244)',
+						'rgb(255, 132, 36)',
+					]
+				}]
+			},
+			options:{
+				scales:{
+					xAxes:[{
+						ticks:{
+							beginAtZero:true
+						}
+					}],
+					yAxes:[{
+						ticks:{
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		});
+	</script>
+</html>

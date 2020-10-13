@@ -115,3 +115,7 @@ def stop_process(name):
 @app.route("/process/details/<name>")
 def process_details(name):
     pass
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

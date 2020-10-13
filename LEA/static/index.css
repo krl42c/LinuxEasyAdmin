@@ -1,5 +1,9 @@
-html{
-	background-color: blue;
+h1 {
+  background-color: #DFB887;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
 }
 .bordes{
 	border: red 2px solid;
@@ -26,7 +30,9 @@ html{
 	border: red 2px solid;
 }
 
+html{
 
+}
 .flex{
 	display: flex;
 	border: red 2px solid;
@@ -61,7 +67,7 @@ html{
     top: 0;
     left: -10%;
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
     transition: left 0.4s;
 }
 
