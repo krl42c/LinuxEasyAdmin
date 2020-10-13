@@ -1,4 +1,6 @@
-
+html{
+	background-color: blue;
+}
 .bordes{
 	border: red 2px solid;
 }
@@ -24,10 +26,7 @@
 	border: red 2px solid;
 }
 
-html{
-	background-image: url("images/fondo.png") no-repeat center center fixed;
-	background-size: cover;
-}
+
 .flex{
 	display: flex;
 	border: red 2px solid;
@@ -62,7 +61,7 @@ html{
     top: 0;
     left: -10%;
     display: flex;
-    /*align-items: center;*/
+    align-items: center;
     transition: left 0.4s;
 }
 
