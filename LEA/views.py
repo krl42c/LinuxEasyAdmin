@@ -14,6 +14,7 @@ def index():
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
 
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'POST':
