@@ -10,7 +10,7 @@
 <body>
     <!-- inicio de la barra de busqueda -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-white rounded">
-			<h3>Linux Easy Admin</h3>
+			<h3 class="ml-1 mr-2">Linux Easy Admin</h3>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		  </button>
@@ -55,10 +55,15 @@
             <input type="radio" name="hm" value="m"> Mujer
           </label>
 			<br>
-          <label>
+          <div>
             <input class="btn btn-primary aling-right" type="Submit" value="Guardar">
             <input class="btn btn-primary" type="reset" value="Reset">
-          </label>
+          </div>
+			<br>
+		  <div>
+			  <!--borrar usuario -->
+			  <input class="btn btn-primary" href="{{ url_for('delete_user', user=user)}}" type="submit" value="Borrar Usuario">
+		  </div>
         </div>
 
     </form>

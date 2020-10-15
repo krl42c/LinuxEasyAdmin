@@ -63,9 +63,12 @@ def user_info(user):
         return INTERNAL_ERROR, 500
 
 
-@app.route("/users/create_user/<user>")
-def create_user(user):
-    pass
+@app.route("/users/create_user")
+def create_user():
+    try:
+        return render_template('create_user.html')
+    except TemplateNotFound:
+        return INTERNAL_ERROR, 500
 
 @app.route("/users/delete_user/<user>")
 def delete_user(user):
