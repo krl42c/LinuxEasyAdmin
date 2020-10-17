@@ -1,4 +1,10 @@
-
+h1 {
+  background-color: #DFB887;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+}
 .bordes{
 	border: red 2px solid;
 }
@@ -24,8 +30,8 @@
 	border: red 2px solid;
 }
 
-body{
-	background-image: url("images/fondo.png");
+html{
+
 }
 .flex{
 	display: flex;

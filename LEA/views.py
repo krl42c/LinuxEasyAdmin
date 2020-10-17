@@ -14,6 +14,7 @@ def index():
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
 
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'POST':
@@ -62,9 +63,12 @@ def user_info(user):
         return INTERNAL_ERROR, 500
 
 
-@app.route("/users/create_user/<user>")
-def create_user(user):
-    pass
+@app.route("/users/create_user")
+def create_user():
+    try:
+        return render_template('create_user.html')
+    except TemplateNotFound:
+        return INTERNAL_ERROR, 500
 
 @app.route("/users/delete_user/<user>")
 def delete_user(user):
@@ -115,3 +119,7 @@ def stop_process(name):
 @app.route("/process/details/<name>")
 def process_details(name):
     pass
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
