@@ -1,4 +1,4 @@
-import os,subprocess
+import os,subprocess,json
 
 def create_user(usr):
     os.system("adduser " + usr)
@@ -29,4 +29,5 @@ def get_users():
 
 def get_user_groups(user):
     out = subprocess.check_output("groups " + user,shell=True)
-    return str(out) # TODO: change output format
+    outStr = str(out) # TODO: change output format
+    return json.dumps(outStr)

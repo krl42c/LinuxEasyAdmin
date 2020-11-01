@@ -2,6 +2,7 @@ from LEA import app, resources, users
 from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
+import json
 
 INTERNAL_ERROR = "500: Internal server error"
 
@@ -54,6 +55,15 @@ def list_users():
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
 
+@app.route("/api/users/<user>")
+def api_get_user(user):
+    return { user : users.get_user_groups(user) }
+
+@app.route("/api/users")
+def get_user_list():
+    user_list = users.get_users()
+    # return { "users" : json.dumps(user_list) }
+    return json.dumps(user_list)
 
 @app.route("/users/<user>")
 def user_info(user):
@@ -61,6 +71,12 @@ def user_info(user):
         return render_template('user_info.html', user=user, user_groups=users.get_user_groups(user))
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
+
+
+
+@app.route("/api/process")
+def api_process_list():
+    return json.dumps(resources.get_process_list())
 
 
 @app.route("/users/create_user")
@@ -88,6 +104,7 @@ def install_package(package):
 @app.route("/packages/delete_package/<package>")
 def delete_package(package):
     pass
+
 
 
 @app.route("/process")
