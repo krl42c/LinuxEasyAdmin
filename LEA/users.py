@@ -1,8 +1,9 @@
 import os,subprocess,json
 
-def create_user(usr):
-    os.system("adduser " + usr)
-    pass
+def create_user(usr,password):
+    if os.system("useradd -p " + password + " " + usr) != 0:
+        return { "Status" : "Failed" }
+    return { "Status" : "Created "}
 
 def delete_user(usr):
     pass

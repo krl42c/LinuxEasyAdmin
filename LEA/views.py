@@ -15,6 +15,12 @@ def index():
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
 
+@app.route('/api/create_user', methods=['POST'])
+def api_create_user():
+    content = request.json
+    print(content)
+    users.create_user(content['username'], content['auth'])
+    return { "Status" : "OK" }
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -54,6 +60,8 @@ def list_users():
         return render_template('users.html', user_list=users.get_users())
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
+
+
 
 @app.route("/api/users/<user>")
 def api_get_user(user):
