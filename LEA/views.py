@@ -54,6 +54,10 @@ def ram():
         return INTERNAL_ERROR, 500
 
 
+@app.route("/api/ram")
+def api_ram():
+    return { "Usage" : resources.get_ram_usage_percent()}
+
 @app.route("/users")
 def list_users():
     try:
