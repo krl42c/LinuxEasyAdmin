@@ -6,7 +6,8 @@ def create_user(usr,password):
     return { "Status" : "Created "}
 
 def delete_user(usr):
-    pass
+    os.system("userdel " + usr)
+    return { "Status" : "Deleted" }
 
 def add_user_group(usr,group):
     pass

@@ -19,8 +19,14 @@ def index():
 def api_create_user():
     content = request.json
     print(content)
-    users.create_user(content['username'], content['auth'])
-    return { "Status" : "OK" }
+    return users.create_user(content['username'], content['auth'])
+
+@app.route("/api/delete_user", methods=["POST"])
+def api_delete_user():
+    content = request.json
+    print(content)
+    return users.delete_user(conent['username'])
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
