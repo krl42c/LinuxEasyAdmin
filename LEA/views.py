@@ -15,21 +15,31 @@ def index():
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
 
+
 @app.route('/api/create_user', methods=['POST'])
 def api_create_user():
     content = request.json
     print(content)
-    users.create_user(content['username'], content['auth'])
     response = apiresponse.APIResponse()
-    response.insert_value("Status", "OK")
-    response.insert_value("Message", "User " + content['username'] + " created")
+    if users.create_user(content['username'], content['auth']):
+        response.insert_value("Status", "OK")
+        response.insert_value("Message", "User " + content['username'] + " created")
+    else:
+        response.insert_value("Error", "Couldn't create user")    
     return response.get_json_response()
+
 
 @app.route("/api/delete_user", methods=["POST"])
 def api_delete_user():
     content = request.json
+    response = apiresponse.APIResponse()
     print(content)
-    return users.delete_user(content['username'])
+    if users.delete_user(content['username']): #Will return 1 if user hasn't been created
+        response.insert_value("Status","OK")
+        response.insert_value("Message","User " + content['username'] + " has been deleted")
+    else:
+        response.insert_value("Error", "Couldn't delete user")
+    return response.get_json_response()
 
 
 @app.route('/login', methods=['GET','POST'])

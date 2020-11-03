@@ -1,13 +1,12 @@
 import os,subprocess,json
 
 def create_user(usr,password):
-    if os.system("useradd -p " + password + " " + usr) != 0:
-        return { "Status" : "Failed" }
-    return { "Status" : "Created "}
+    os.system("useradd -p " + password + " " + usr)
+    return os.system("grep -c " + usr + " /etc/passwd")
 
 def delete_user(usr):
     os.system("userdel " + usr)
-    return { "Status" : "Deleted" }
+    return os.system("grep -c " + usr + " /etc/passwd")
 
 def add_user_group(usr,group):
     pass
