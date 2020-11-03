@@ -8,3 +8,31 @@
 # flask run
 ```
 
+
+## API USAGE
+
+### Users
+
+Get a list of users
+
+```
+GET /api/users
+```
+
+Create a new user
+
+```
+POST /api/create_user
+```
+
+Send the following body 
+
+```json
+{ 
+    "username" : "username",
+    "auth" : "password"
+
+}
+```
+
+
