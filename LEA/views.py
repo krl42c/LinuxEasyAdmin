@@ -1,4 +1,4 @@
-from LEA import app, resources, users
+from LEA import app, resources, users, apiresponse
 from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
@@ -19,13 +19,17 @@ def index():
 def api_create_user():
     content = request.json
     print(content)
-    return users.create_user(content['username'], content['auth'])
+    users.create_user(content['username'], content['auth'])
+    response = apiresponse.APIResponse()
+    response.insert_value("Status", "OK")
+    response.insert_value("Message", "User " + content['username'] + " created")
+    return response.get_json_response()
 
 @app.route("/api/delete_user", methods=["POST"])
 def api_delete_user():
     content = request.json
     print(content)
-    return users.delete_user(conent['username'])
+    return users.delete_user(content['username'])
 
 
 @app.route('/login', methods=['GET','POST'])
