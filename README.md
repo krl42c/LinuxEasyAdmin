@@ -11,13 +11,21 @@
 
 ## API USAGE
 
-### Users
+---	
+
+### USERS
 
 Get a list of users
 
 ```
 GET /api/users
 ```
+
+Get information from a specific user
+
+```
+GET /api/user/<user>
+``` 
 
 Create a new user
 
@@ -31,8 +39,36 @@ Send the following body
 { 
     "username" : "username",
     "auth" : "password"
-
 }
 ```
+
+Delete an user
+
+```
+POST /api/delete_user
+```
+
+```json
+{
+    "username" : "username",
+    "auth" : "auth"
+}
+```
+---
+
+### RESOURCES
+
+Get disk space
+
+```
+GET /api/disk/<disknumber>
+``` 
+
+Get RAM usage
+
+``` 
+GET /api/ram
+```
+
 
 
