@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9101f1c6-9e26-4983-83df-9779db9488e4" name="Default Changelist" comment="" />
+    <list default="true" id="9101f1c6-9e26-4983-83df-9779db9488e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +38,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="front" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1ijqUEe1itLzcnsNRfTPS3Yu2Uh" />
@@ -45,7 +55,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/lea-front" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -71,9 +81,17 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1604510427669">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1604510427669" />
     <state x="606" y="167" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602677292368">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="606" y="167" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1602677292368" />
+    <state x="721" y="247" width="539" height="619" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604511026994">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="721" y="247" width="539" height="619" key="git4idea.branch.GitSmartOperationDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1604511026994" />
   </component>
 </project>
