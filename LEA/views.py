@@ -1,7 +1,8 @@
-from LEA import app, resources, users
+from LEA import app, resources, users, apiresponse
 from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
+import json
 
 INTERNAL_ERROR = "500: Internal server error"
 
@@ -13,6 +14,32 @@ def index():
         return render_template('index.html', title='INICIO', os=resources.get_os())
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
+
+
+@app.route('/api/create_user', methods=['POST'])
+def api_create_user():
+    content = request.json
+    print(content)
+    response = apiresponse.APIResponse()
+    if users.create_user(content['username'], content['auth']):
+        response.insert_value("Status", "OK")
+        response.insert_value("Message", "User " + content['username'] + " created")
+    else:
+        response.insert_value("Error", "Couldn't create user")    
+    return response.get_json_response()
+
+
+@app.route("/api/delete_user", methods=["POST"])
+def api_delete_user():
+    content = request.json
+    response = apiresponse.APIResponse()
+    print(content)
+    if users.delete_user(content['username']): #Will return 1 if user hasn't been created
+        response.insert_value("Status","OK")
+        response.insert_value("Message","User " + content['username'] + " has been deleted")
+    else:
+        response.insert_value("Error", "Couldn't delete user")
+    return response.get_json_response()
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -47,6 +74,10 @@ def ram():
         return INTERNAL_ERROR, 500
 
 
+@app.route("/api/ram")
+def api_ram():
+    return { "Usage" : resources.get_ram_usage_percent()}
+
 @app.route("/users")
 def list_users():
     try:
@@ -55,12 +86,29 @@ def list_users():
         return INTERNAL_ERROR, 500
 
 
+
+@app.route("/api/users/<user>")
+def api_get_user(user):
+    return { user : users.get_user_groups(user) }
+
+@app.route("/api/users")
+def get_user_list():
+    user_list = users.get_users()
+    # return { "users" : json.dumps(user_list) }
+    return json.dumps(user_list)
+
 @app.route("/users/<user>")
 def user_info(user):
     try:
         return render_template('user_info.html', user=user, user_groups=users.get_user_groups(user))
     except TemplateNotFound:
         return INTERNAL_ERROR, 500
+
+
+
+@app.route("/api/process")
+def api_process_list():
+    return json.dumps(resources.get_process_list())
 
 
 @app.route("/users/create_user")
@@ -88,6 +136,7 @@ def install_package(package):
 @app.route("/packages/delete_package/<package>")
 def delete_package(package):
     pass
+
 
 
 @app.route("/process")
