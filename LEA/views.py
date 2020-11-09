@@ -26,7 +26,7 @@ def api_create_user():
         response.insert_value("Message", "User " + content['username'] + " created")
     else:
         response.insert_value("Error", "Couldn't create user")    
-    return response.get_json_response()
+    return response.get_json()
 
 
 @app.route("/api/delete_user", methods=["POST"])
@@ -39,8 +39,18 @@ def api_delete_user():
         response.insert_value("Message","User " + content['username'] + " has been deleted")
     else:
         response.insert_value("Error", "Couldn't delete user")
-    return response.get_json_response()
+    return response.get_json()
 
+@app.route("/api/chage_password", methods=["POST"])
+def api_change_password():
+	content = request.json
+	user = content['username']
+	new_pass = content['new_password']
+	old_pass = contnet['old_pass']
+	#TODO: Implement function in users.py
+	response = apiresponse.APIResponse()
+	response.insert_value("Status", "OK")
+	return response.get_json()
 
 @app.route('/login', methods=['GET','POST'])
 def login():
