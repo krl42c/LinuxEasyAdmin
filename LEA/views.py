@@ -179,6 +179,32 @@ def stop_process(name):
 def process_details(name):
     pass
 
+@app.route("/api/cpu")
+def api_get_cpu():
+	#TODO: implement in resources.py	
+	pass
+
+@app.route("/api/package/install", methods=["POST"])
+def api_install_package():
+	content = request.json
+	package_name = content["name"]
+	#TODO: implement in packages.py
+	pass
+
+@app.route("/api/package/delete", methods=["POST"])
+def api_delete_package():
+	content = request.json
+	package_name = content["name"]
+	#TODO: implement in packages.py
+	pass
+
+@app.route("/api/packages"):
+def api_packages():
+	#TODO: implement in packages.py
+	pass
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
