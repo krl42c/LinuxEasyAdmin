@@ -28,7 +28,6 @@ def api_create_user():
         response.insert_value("Error", "Couldn't create user")    
     return response.get_json()
 
-
 @app.route("/api/delete_user", methods=["POST"])
 def api_delete_user():
     content = request.json
@@ -46,7 +45,7 @@ def api_change_password():
 	content = request.json
 	user = content['username']
 	new_pass = content['new_password']
-	old_pass = contnet['old_pass']
+	old_pass = content['old_pass']
 	#TODO: Implement function in users.py
 	response = apiresponse.APIResponse()
 	response.insert_value("Status", "OK")
@@ -187,7 +186,7 @@ def api_get_cpu():
 @app.route("/api/package/install", methods=["POST"])
 def api_install_package():
 	content = request.json
-	response = apiresponse.APIResponse
+	response = apiresponse.APIResponse()
 
 	package_name = content["name"]
 	pkgManager = packages.PackageManager("apt")
@@ -203,7 +202,7 @@ def api_install_package():
 @app.route("/api/package/delete", methods=["POST"])
 def api_delete_package():
 	content = request.json
-	response = apiresponse.APIResponse
+	response = apiresponse.APIResponse()
 
 	package_name = content["name"]
 	pkgManager = packages.PackageManager("apt")
