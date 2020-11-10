@@ -187,23 +187,38 @@ def api_get_cpu():
 @app.route("/api/package/install", methods=["POST"])
 def api_install_package():
 	content = request.json
+	response = apiresponse.APIResponse
+
 	package_name = content["name"]
-	#TODO: implement in packages.py
-	pass
+	pkgManager = packages.PackageManager("apt")
+
+	if pkgManager.install(package_name):
+		response.insert_value("Status","OK")
+		return response.get_json(),200
+	else:
+		response.insert_value("Status","Erorr")
+		return response.get_json(),400
+
 
 @app.route("/api/package/delete", methods=["POST"])
 def api_delete_package():
 	content = request.json
-	package_name = content["name"]
-	#TODO: implement in packages.py
-	pass
+	response = apiresponse.APIResponse
 
-@app.route("/api/packages"):
+	package_name = content["name"]
+	pkgManager = packages.PackageManager("apt")
+
+	if pkgManager.delete(package_name):
+		response.insert_value("Status","OK")
+		return response.get_json(),200
+	else:
+		response.insert_value("Status", "Error")
+		return response.get_json(),400
+
+@app.route("/api/packages")
 def api_packages():
 	#TODO: implement in packages.py
 	pass
-
-
 
 
 if __name__ == "__main__":
