@@ -1,4 +1,4 @@
-from LEA import app, resources, users, apiresponse
+from LEA import app, resources, users, apiresponse, actions
 from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
@@ -227,9 +227,8 @@ def api_battery():
 
 @app.route("/api/shutdown")
 def api_shutdown():
-	pass
-
-	
+	actions.shutdown()
+	return 200
 
 if __name__ == "__main__":
     app.run(debug=True)
