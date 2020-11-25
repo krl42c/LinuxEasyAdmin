@@ -219,6 +219,17 @@ def api_packages():
 	#TODO: implement in packages.py
 	pass
 
+@app.route("/api/battery")
+def api_battery():
+	response = apiresponse.APIResponse()
+	response.insert_value("Value", resources.get_battery_percentage())
+	return response.get_json(), 200
+
+@app.route("/api/shutdown")
+def api_shutdown():
+	pass
+
+	
 
 if __name__ == "__main__":
     app.run(debug=True)
