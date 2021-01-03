@@ -1,4 +1,4 @@
-from LEA import app, resources, users, apiresponse
+from LEA import app, resources, users, apiresponse, actions
 from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
@@ -26,8 +26,7 @@ def api_create_user():
         response.insert_value("Message", "User " + content['username'] + " created")
     else:
         response.insert_value("Error", "Couldn't create user")    
-    return response.get_json_response()
-
+    return response.get_json()
 
 @app.route("/api/delete_user", methods=["POST"])
 def api_delete_user():
@@ -39,8 +38,18 @@ def api_delete_user():
         response.insert_value("Message","User " + content['username'] + " has been deleted")
     else:
         response.insert_value("Error", "Couldn't delete user")
-    return response.get_json_response()
+    return response.get_json()
 
+@app.route("/api/chage_password", methods=["POST"])
+def api_change_password():
+	content = request.json
+	user = content['username']
+	new_pass = content['new_password']
+	old_pass = content['old_pass']
+	#TODO: Implement function in users.py
+	response = apiresponse.APIResponse()
+	response.insert_value("Status", "OK")
+	return response.get_json()
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -169,6 +178,57 @@ def stop_process(name):
 def process_details(name):
     pass
 
+@app.route("/api/cpu")
+def api_get_cpu():
+	#TODO: implement in resources.py	
+	pass
+
+@app.route("/api/package/install", methods=["POST"])
+def api_install_package():
+	content = request.json
+	response = apiresponse.APIResponse()
+
+	package_name = content["name"]
+	pkgManager = packages.PackageManager("apt")
+
+	if pkgManager.install(package_name):
+		response.insert_value("Status","OK")
+		return response.get_json(),200
+	else:
+		response.insert_value("Status","Erorr")
+		return response.get_json(),400
+
+
+@app.route("/api/package/delete", methods=["POST"])
+def api_delete_package():
+	content = request.json
+	response = apiresponse.APIResponse()
+
+	package_name = content["name"]
+	pkgManager = packages.PackageManager("apt")
+
+	if pkgManager.delete(package_name):
+		response.insert_value("Status","OK")
+		return response.get_json(),200
+	else:
+		response.insert_value("Status", "Error")
+		return response.get_json(),400
+
+@app.route("/api/packages")
+def api_packages():
+	#TODO: implement in packages.py
+	pass
+
+@app.route("/api/battery")
+def api_battery():
+	response = apiresponse.APIResponse()
+	response.insert_value("Value", resources.get_battery_percentage())
+	return response.get_json(), 200
+
+@app.route("/api/shutdown")
+def api_shutdown():
+	actions.shutdown()
+	return 200
 
 if __name__ == "__main__":
     app.run(debug=True)

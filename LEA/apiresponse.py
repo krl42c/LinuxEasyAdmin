@@ -7,5 +7,5 @@ class APIResponse:
     def insert_value(self,key,value):
         self.json_response[key] = value 
 
-    def get_json_response(self):
+    def get_json(self):
         return self.json_response
