@@ -1,10 +1,9 @@
-import psutil,sys
+import psutil,sys,os
 
 
 # Returns the current platform the program is running in
 def get_os():
     return str(sys.platform)
-
 # Returns a list with the current processes that are running
 # TODO: change list to dictionary, add PID to be able to make operations with them
 def get_process_list():
@@ -38,4 +37,10 @@ def get_ram_usage_percent():
 def get_ram():
     return psutil.virtual_memory()
 
+def get_cpu_usage():
+    p = psutil.Process(os.getpid())
+    # TODO: esto no funciona, no se que hacer
+    return p.cpu_percent(interval=None)
 
+
+print(get_cpu_usage())

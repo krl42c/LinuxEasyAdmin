@@ -180,8 +180,9 @@ def process_details(name):
 
 @app.route("/api/cpu")
 def api_get_cpu():
-	#TODO: implement in resources.py	
-	pass
+    response = apiresponse.APIResponse()
+    response.insert_value("Value", resources.get_cpu_usage())
+    return response.get_json(),400
 
 @app.route("/api/package/install", methods=["POST"])
 def api_install_package():
