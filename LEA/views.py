@@ -85,7 +85,9 @@ def ram():
 
 @app.route("/api/ram")
 def api_ram():
-    return { "Usage" : resources.get_ram_usage_percent()}
+    response = apiresponse.APIResponse()
+    response.insert_value("Value", resources.get_ram_usage_percent())
+    return response.get_json()
 
 @app.route("/users")
 def list_users():
