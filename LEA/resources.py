@@ -38,9 +38,8 @@ def get_ram():
     return psutil.virtual_memory()
 
 def get_cpu_usage():
-    p = psutil.Process(os.getpid())
     # TODO: esto no funciona, no se que hacer
-    return p.cpu_percent(interval=None)
+    return psutil.cpu_percent()
 
 
 print(get_cpu_usage())

@@ -3,7 +3,7 @@ from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
 import json
-
+import psutil
 INTERNAL_ERROR = "500: Internal server error"
 
 app.config.from_json('settings.json')
