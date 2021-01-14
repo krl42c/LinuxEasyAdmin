@@ -214,7 +214,7 @@ def api_delete_package():
     package_name = content["name"]
     pkgManager = packages.PackageManager("apt")
 
-    if pkgManager.delete(package_name):
+    if pkgManager.remove(package_name):
         response.insert_value("Status", "OK")
         return response.get_json(), 200
     else:
