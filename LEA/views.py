@@ -1,4 +1,4 @@
-from LEA import app, resources, users, apiresponse, actions
+from LEA import app, resources, users, apiresponse, actions, packages
 from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
@@ -133,23 +133,6 @@ def create_user():
 def delete_user(user):
     users.delete_user(user)
 
-
-@app.route("/packages")
-def packages():
-    pass
-
-
-@app.route("/packages/install_package/<package>")
-def install_package(package):
-    pass
-
-
-@app.route("/packages/delete_package/<package>")
-def delete_package(package):
-    pass
-
-
-
 @app.route("/process")
 def process():
     print("Rendering 'process.html'...")
@@ -188,18 +171,19 @@ def api_get_cpu():
 
 @app.route("/api/package/install", methods=["POST"])
 def api_install_package():
-	content = request.json
-	response = apiresponse.APIResponse()
+    content = request.json
 
-	package_name = content["name"]
-	pkgManager = packages.PackageManager("apt")
+    response = apiresponse.APIResponse()
 
-	if pkgManager.install(package_name):
-		response.insert_value("Status","OK")
-		return response.get_json(),200
-	else:
-		response.insert_value("Status","Erorr")
-		return response.get_json(),400
+    package_name = content["name"]
+    pkgManager = packages.PackageManager("apt")
+
+    if pkgManager.install(package_name):
+        response.insert_value("Status", "OK")
+        return response.get_json(), 200
+    else:
+        response.insert_value("Status", "Erorr")
+        return response.get_json(), 400
 
 
 @app.route("/api/package/delete", methods=["POST"])
