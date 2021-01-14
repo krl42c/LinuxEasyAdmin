@@ -145,12 +145,12 @@ def delete_user(user):
 def api_stop_process():
     content = request.json
     response = apiresponse.APIResponse()
-    process_name = content["name"]
+    process_name = content["name"]["s"]
     if "|" in process_name or "&" in process_name:
         response.insert_value("Status", "Error")
         return response.get_json(),400
 
-    if process.delete_process(process_name):
+    if process.delete_process(str(process_name)):
         response.insert_value("Status", "OK")
         return response.get_json()
     else:
