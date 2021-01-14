@@ -177,6 +177,9 @@ def api_install_package():
 
     package_name = content["name"]
     pkgManager = packages.PackageManager("apt")
+    if "|" in package_name or "&" in package_name:
+        response.insert_value("Status", "Error")
+        return response.get_json(),400
 
     if pkgManager.install(package_name):
         response.insert_value("Status", "OK")
