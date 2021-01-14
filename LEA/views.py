@@ -221,6 +221,17 @@ def api_delete_package():
         response.insert_value("Status", "Error")
         return response.get_json(), 400
 
+@app.route("/api/package/status")
+def api_package_status():
+    response = apiresponse.APIResponse()
+    if resources.apt_locked() == b'FREE':
+        response.insert_value("Status","Free")
+        return response.get_json(),200
+    else:
+        response.insert_value("Status","Locked")
+        return  response.get_json(),200
+
+
 
 @app.route("/api/packages")
 def api_packages():

@@ -1,4 +1,4 @@
-import psutil,sys,os
+import psutil,sys,os,subprocess
 
 
 # Returns the current platform the program is running in
@@ -41,5 +41,7 @@ def get_cpu_usage():
     # TODO: esto no funciona, no se que hacer me quiero suicidar
     return psutil.cpu_percent()
 
+def apt_locked():
+    output = subprocess.check_output("ps -C apt-get,dpkg >/dev/null && echo 'LOCK' || echo 'FREE'", shell=True)
+    return output.rstrip()
 
-print(get_cpu_usage())
