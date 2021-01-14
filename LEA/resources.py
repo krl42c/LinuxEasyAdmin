@@ -24,7 +24,7 @@ def get_disk_space(disk=None):
     else:
         hd_space = psutil.disk_usage(disk)
 
-    return hd_space
+    return hd_space[3]
 
 # Returns the percentage of the battery
 def get_battery_percentage():
@@ -38,7 +38,7 @@ def get_ram():
     return psutil.virtual_memory()
 
 def get_cpu_usage():
-    # TODO: esto no funciona, no se que hacer
+    # TODO: esto no funciona, no se que hacer me quiero suicidar
     return psutil.cpu_percent()
 
 

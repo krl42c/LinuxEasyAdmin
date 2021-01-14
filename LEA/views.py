@@ -217,5 +217,11 @@ def api_shutdown():
 	actions.shutdown()
 	return 200
 
+@app.route("/api/disk")
+def api_disk():
+    response = apiresponse.APIResponse()
+    response.insert_value("Value", resources.get_disk_space())
+    return response.get_json(), 200
+
 if __name__ == "__main__":
     app.run(debug=True)
