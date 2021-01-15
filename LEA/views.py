@@ -181,7 +181,7 @@ def process_details(name):
 def api_get_cpu():
     response = apiresponse.APIResponse()
     response.insert_value("Value", resources.get_cpu_usage())
-    return response.get_json(), 400
+    return response.get_json()
 
 
 @app.route("/api/package/install", methods=["POST"])
