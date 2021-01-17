@@ -19,7 +19,8 @@ def get_process_list_with_usage():
     processList = []
 
     for p in psutil.process_iter():
-        processList.append({str(p.name()) : str(p.memory_percent())})
+        # processList.append({str(p.name()) : str(p.memory_percent())})
+        processList.append({"Name" : str(p.name()), "Value" : str(p.memory_percent())})
 
     return processList
 
