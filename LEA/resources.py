@@ -64,7 +64,7 @@ def get_disk_folders():
     folders_str = str(folders).split('\\n')
 
     for i,j in zip(sizes_str,folders_str):
-        size_folder.append({ j : i })
+        size_folder.append({"Name" : j , "Value" : i })
 
     return size_folder
 
