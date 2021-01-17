@@ -258,6 +258,14 @@ def api_disk():
     response.insert_value("Value", resources.get_disk_space())
     return response.get_json(), 200
 
+@app.route("/api/disk_folders")
+def api_disk_folders():
+    return json.dumps(resources.get_disk_folders()),200
+
+@app.route("/api/ram/process")
+def api_ram_process():
+    return json.dumps(resources.get_process_list_with_usage()),200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
