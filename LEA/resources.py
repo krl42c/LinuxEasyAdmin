@@ -20,7 +20,7 @@ def get_process_list_with_usage():
 
     for p in psutil.process_iter():
         # processList.append({str(p.name()) : str(p.memory_percent())})
-        processList.append({"Name" : str(p.name()), "Value" : str(p.memory_percent())})
+        processList.append({"Name" : str(p.name()), "Value" : str(round(p.memory_percent(),3))})
 
     return processList
 
@@ -67,5 +67,4 @@ def get_disk_folders():
         size_folder.append({"Name" : j , "Value" : i })
 
     return size_folder
-
 
