@@ -3,11 +3,12 @@ from simplepam import authenticate
 from flask import render_template, session, redirect, url_for, escape, request
 from jinja2 import TemplateNotFound
 import json
-import psutil
+
 
 INTERNAL_ERROR = "500: Internal server error"
 
 app.config.from_json('settings.json')
+
 
 
 @app.route('/')
@@ -54,23 +55,16 @@ def api_change_password():
     return response.get_json()
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/api/login', methods=['POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if authenticate(username, password):
-            session['username'] = request.form['username']
-            return redirect(url_for('index'))
-        else:
-            return 'Invalid username/password'
-    return '''
-           <form action="" method="post">
-               <p><input type=text name=username>
-               <p><input type=password name=password>
-               <p><input type=submit value=Login>
-           </form>
-       '''
+    content = request.json
+    ip = content['ip']
+    password = content['password']
+
+    response = apiresponse.APIResponse()
+    response.insert_value("IP", str(ip))
+    return response.get_json()
+
 
 
 @app.route('/logout')
