@@ -10,13 +10,11 @@ class PackageManager:
 			self.delete_cmd = "apt remove"
 			self.update_cmd = "apt upgrade"
 			self.update_all_cmd = "apt update && apt upgrade"
-		if self.manager == "pacman":
-			self.install_cmd = "pacman -S"
-			self.delete_cmd = "pacman -Rsn"
-			self.update_cmd = "pacman -Syu"
-			self.update_all_cmd = "pacman -Syu"
+		if self.manager == "yum":
+			self.install_cmd = "yum install -y"
+			self.delete_cmd = "yum remove -y"
+                
 
-		#TODO: Add more package managers from other distros
 
 	def install(self,name):
 		return os.system(self.install_cmd + " " + name)

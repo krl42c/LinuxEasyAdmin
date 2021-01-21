@@ -185,7 +185,7 @@ def api_install_package():
     response = apiresponse.APIResponse()
 
     package_name = content["name"]
-    pkgManager = packages.PackageManager("apt")
+    pkgManager = packages.PackageManager("yum")
     if "|" in package_name or "&" in package_name:
         response.insert_value("Status", "Error")
         return response.get_json(), 400
@@ -203,8 +203,9 @@ def api_delete_package():
     content = request.json
     response = apiresponse.APIResponse()
 
-    package_name = content["name"]
-    pkgManager = packages.PackageManager("apt")
+    package_name = content["name"]['s']
+    print(package_name)
+    pkgManager = packages.PackageManager("yum")
 
     if pkgManager.remove(package_name):
         response.insert_value("Status", "OK")
