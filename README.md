@@ -70,5 +70,84 @@ Get RAM usage
 GET /api/ram
 ```
 
+Get CPU usage
+
+``` 
+GET /api/cpu
+```
+
+Get battery percent
+
+``` 
+GET /api/battery
+```
+
+Get folders with disk usage
+
+``` 
+GET /api/disk/folders
+```
+
+Get process list with ram usage
+
+``` 
+GET /api/ram/process
+```
+
+Shutdown
+
+``` 
+GET /api/shutdown
+```
+
+--- 
+
+### PACKAGES
+
+Get package manager lock status 
+
+``` 
+GET /api/package/status
+```
+
+Install package 
+
+``` 
+POST /api/package/install
+```
+
+```json
+{
+    "name" : "name",
+}
+```
+
+Delete package
+
+``` 
+POST /api/package/delete
+```
+
+```json
+{
+    "name" : "name",
+}
+```
+
+
+### PROCESS MANAGEMENT
+
+
+Get process list 
+
+``` 
+GET /api/process
+```
+
+Shutdown process
+
+``` 
+GET /process/stop_process/<name>
+```
 
 
