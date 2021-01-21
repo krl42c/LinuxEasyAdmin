@@ -224,13 +224,6 @@ def api_package_status():
         return  response.get_json(),200
 
 
-
-@app.route("/api/packages")
-def api_packages():
-    # TODO: implement in packages.py
-    pass
-
-
 @app.route("/api/battery")
 def api_battery():
     response = apiresponse.APIResponse()
