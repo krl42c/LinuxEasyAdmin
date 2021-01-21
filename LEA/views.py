@@ -234,6 +234,7 @@ def api_packages():
 @app.route("/api/battery")
 def api_battery():
     response = apiresponse.APIResponse()
+    response.insert_value("Plug", resources.get_battery_plugged())
     response.insert_value("Value", resources.get_battery_percentage())
     return response.get_json(), 200
 
@@ -260,6 +261,9 @@ def api_disk_folders():
 def api_ram_process():
     return json.dumps(resources.get_process_list_with_usage()),200
 
+@app.route("/api/package/list")
+def api_package_list():
+    return json.dumps(resources.installed_packages()),200
 
 if __name__ == "__main__":
     app.run(debug=True)

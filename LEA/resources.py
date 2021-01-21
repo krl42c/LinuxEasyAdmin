@@ -40,6 +40,10 @@ def get_battery_percentage():
     battery = psutil.sensors_battery()
     return str(battery.percent)
 
+def get_battery_plugged():
+    plug = psutil.sensors_battery().power_plugged
+    return plug
+
 def get_ram_usage_percent():
     return psutil.virtual_memory().percent
 
@@ -68,3 +72,14 @@ def get_disk_folders():
 
     return size_folder
 
+
+def installed_packages():
+    pkg_list = []
+
+    apt_output = subprocess.check_output("apt list --installed",shell=True)
+    apt_output_str = str(apt_output).split('\\n')
+
+    for i in apt_output_str:
+        pkg_list.append({"Name" : i })
+
+    return pkg_list
