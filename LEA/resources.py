@@ -51,7 +51,6 @@ def get_ram():
     return psutil.virtual_memory()
 
 def get_cpu_usage():
-    # TODO: esto no funciona, no se que hacer me quiero suicidar
     return psutil.cpu_percent()
 
 def apt_locked():
@@ -84,16 +83,3 @@ def installed_packages():
 
     return pkg_list
 
-
-def get_temps():
-    print(psutil.cpu_temperature())
-    return psutil.sensors_temperatures(fahrenheit=False)
-def get_cpu_temperature():
-    """
-    Get CPU temperature.
-    """
-    with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
-        temp = float(f.read()) / 1000.0
-
-    return temp
-print(get_cpu_temperature())
