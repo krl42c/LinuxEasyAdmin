@@ -8,21 +8,6 @@ def delete_user(usr):
     os.system("userdel " + usr)
     return os.system("grep -c " + usr + " /etc/passwd")
 
-def add_user_group(usr,group):
-    pass
-
-def delete_user_group(usr,group):
-    pass
-
-def change_user_password(usr,old_password,new_password):
-    pass
-
-def create_group(group):
-    pass
-
-def delete_group(group):
-    pass
-
 def get_users():
     out = subprocess.check_output("cut -d: -f1 /etc/passwd",shell=True)
     output = str(out)

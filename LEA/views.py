@@ -10,15 +10,6 @@ INTERNAL_ERROR = "500: Internal server error"
 app.config.from_json('settings.json')
 
 
-
-@app.route('/')
-def index():
-    try:
-        return render_template('index.html', title='INICIO', os=resources.get_os())
-    except TemplateNotFound:
-        return INTERNAL_ERROR, 500
-
-
 @app.route('/api/create_user', methods=['POST'])
 def api_create_user():
     content = request.json
@@ -66,34 +57,11 @@ def login():
     return response.get_json()
 
 
-
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('index'))
-
-
-@app.route('/ram')
-def ram():
-    try:
-        return render_template('ram.html', ram_percent=resources.get_ram_usage_percent())
-    except TemplateNotFound:
-        return INTERNAL_ERROR, 500
-
-
 @app.route("/api/ram")
 def api_ram():
     response = apiresponse.APIResponse()
     response.insert_value("Value", resources.get_ram_usage_percent())
     return response.get_json()
-
-
-@app.route("/users")
-def list_users():
-    try:
-        return render_template('users.html', user_list=users.get_users())
-    except TemplateNotFound:
-        return INTERNAL_ERROR, 500
 
 
 @app.route("/api/users/<user>")
@@ -108,30 +76,10 @@ def get_user_list():
     return json.dumps(user_list)
 
 
-@app.route("/users/<user>")
-def user_info(user):
-    try:
-        return render_template('user_info.html', user=user, user_groups=users.get_user_groups(user))
-    except TemplateNotFound:
-        return INTERNAL_ERROR, 500
-
-
 @app.route("/api/process")
 def api_process_list():
     return json.dumps(resources.get_process_list())
 
-
-@app.route("/users/create_user")
-def create_user():
-    try:
-        return render_template('create_user.html')
-    except TemplateNotFound:
-        return INTERNAL_ERROR, 500
-
-
-@app.route("/users/delete_user/<user>")
-def delete_user(user):
-    users.delete_user(user)
 
 @app.route("/api/stop_process", methods=['POST'])
 def api_stop_process():
@@ -149,26 +97,6 @@ def api_stop_process():
         response.insert_value("Status", "Error")
         return response.get_json(),400
 
-
-@app.route("/process/start_process/<name>")
-def start_process(name):
-    pass
-
-
-@app.route("/process/stop_process/<name>")
-def stop_process(name):
-    # TODO: Implement process stopping
-    print("Stopped process " + name)
-    try:
-        return render_template('process.html', processList=resources.get_process_list())
-    except TemplateNotFound:
-        print("Template not found exception raised")
-        return INTERNAL_ERROR, 500
-
-
-@app.route("/process/details/<name>")
-def process_details(name):
-    pass
 
 
 @app.route("/api/cpu")

@@ -5,6 +5,5 @@ def delete_process(process):
 def get_process_pid(process):
     pass
 
-
 def get_process_status(process):
     pass
