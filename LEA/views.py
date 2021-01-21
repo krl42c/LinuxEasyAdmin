@@ -36,7 +36,7 @@ def api_create_user():
 def api_delete_user():
     content = request.json
     response = apiresponse.APIResponse()
-    if users.delete_user(str(content['username']['s'])):  # Will return 1 if user hasn't been created
+    if users.delete_user(str(content['username']['s']['s'])):  # Will return 1 if user hasn't been created
         response.insert_value("Status", "OK")
     else:
         response.insert_value("Error", "Couldn't delete user")

@@ -83,3 +83,17 @@ def installed_packages():
         pkg_list.append({"Name" : i })
 
     return pkg_list
+
+
+def get_temps():
+    print(psutil.cpu_temperature())
+    return psutil.sensors_temperatures(fahrenheit=False)
+def get_cpu_temperature():
+    """
+    Get CPU temperature.
+    """
+    with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
+        temp = float(f.read()) / 1000.0
+
+    return temp
+print(get_cpu_temperature())
