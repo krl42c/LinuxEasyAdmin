@@ -7,8 +7,10 @@ import json
 
 INTERNAL_ERROR = "500: Internal server error"
 
-app.config.from_json('settings.json')
+with open('LEA/settings.json') as f:
+    config = json.load(f)
 
+app.config.update(config)
 
 @app.route('/api/create_user', methods=['POST'])
 def api_create_user():
